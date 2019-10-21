@@ -1,0 +1,30 @@
+Most of the data that we have at Rakuten is the unclassified data. 
+So we have to employ the Unsupervised Learning model. 
+
+So, we also do a reinforcement learning model wherein the trained data is automatically put back to the catalog. 
+And the training models will be improved upon the thing already present. 
+
+
+Some of the common Machine Learning models are -
+K Nearest Neigbours, Linear Regression, Random Forest, Support Vector Machines, Decision Trees, KNN, CNN etc. 
+
+Prerequisites to learn ML -> 
+Linear Algebra 
+Statistics and Probability
+Calculus
+Graph Theory
+Programming Skills - Python mostly. 
+
+------------------------------------------------------------------------------------------------------
+While training the model, the data is usually split in the ration 80-20.
+So we feed in 80% of the data. And build the model. 
+Now the model will create some logic of it's own there. 
+And then from there the next 20% of the data will be put on it to test the accuracy of the model thus trained.
+------------------------------------------------------------------------------------------------------------------
+
+In Rakuten, whatever data that we have we have to carry out multiclass classification there. 
+Binary Classification and Multiclass Classification is present. 
+Eg Binary Classification :- Whether a customer has purchased a product or not. YES or NO. 
+Multiclass Classification :- To group the data into more than one class. Eg - Shoes -> Color : Black, Brown, Red etc, Men Shoes, Size - 7UK 
+
+

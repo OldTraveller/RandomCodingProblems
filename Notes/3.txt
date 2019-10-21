@@ -1,0 +1,14 @@
+Examples of Supervised Learning Algorithms :- 
+
+1) Linear Regression
+2) Nearest Neighbour. 
+3) Gaussian Naive BAYES. 
+4) Decision Trees. 
+5) SVM
+6) Random Forest. 
+
+
+Association can be used to group similar items or if one item is purchased then the other one is also somewhere nearby. 
+That is the customer if purchases X, is likely to purchase the Y item too. 
+
+
