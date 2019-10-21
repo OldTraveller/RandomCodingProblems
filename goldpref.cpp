@@ -7,5 +7,10 @@ int main() {
       cin.tie( nullptr ) ;
       cout.tie( nullptr ) ;
 
-           
+      int t ; 
+      cin >> t ;
+
+      while( t-- ) {
+            
+      }
 }

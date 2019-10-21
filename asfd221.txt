@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std ;
+using ll = long long ;
+map<ll,ll> positions ; 
+ll m , M ; 
+
+ll COUNT( vector<ll> arr , ll start , ll end , ll pos ) {
+      ll mid((start+end)/2) ;
+      if(mid == pos) return 0 ;
+      else if( mid > pos && arr[mid] > arr[pos] ) return COUNT( arr , start , mid - 1 , pos ) ;
+      else if( mid > pos && arr[mid] < arr[pos] ) {
+            if( M == arr[pos] ) swap( arr[mid] , arr[positions[positions[M]-1]] ) ;
+            else swap( arr[mid] , arr[positions[M]] ) ;
+            return 1 + COUNT( arr , start , mid - 1 , pos ) ; 
+      }
+      else if ( mid < pos && arr[mid] < arr[pos] ) return COUNT( arr , mid + 1 , end , pos ) ; 
+      else if ( mid < pos && arr[mid] > arr[pos] ) {
+            if( m == arr[pos] ) swap( arr[mid] , arr[positions[positions[m]+1]] ) ;
+            else swap( arr[mid] , arr[positions[m]] ) ;
+            return 1 + COUNT( arr , mid + 1 , end , pos ) ; 
+      }
+}
+
+int main() {
+      ios :: sync_with_stdio(false) ;
+      cin.tie( nullptr ) ;
+      cout.tie( nullptr ) ;
+
+      int t ;
+      cin >> t ;
+
+      ll n , q ; 
+      cin >> n >> q ; 
+
+      vector<ll> arr(n+1) ; 
+      for( ll i = 1 ; i <= n ; i++ ) {
+            cin >> arr[i] ; 
+            positions[arr[i]] = i ; 
+      }
+
+      M = *max_element(++arr.begin() , arr.end() ) ; 
+      m = *min_element(++arr.begin() , arr.end() ) ;
+      ll mid = (n+1)/2 ; 
+
+      while(q--) {
+            ll x ; cin >> x ; 
+            if( x == m && mid < positions[x] ) {
+                  cout << -1 << endl ; continue ; 
+            }
+            if( x == M && mid > positions[x] ) {
+                  cout << -1 << endl ; 
+                  continue ;
+            }
+
+            cout << COUNT( arr , 1 , n , positions[x] ) << endl ;
+      }
+}
