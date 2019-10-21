@@ -1,41 +1,37 @@
-#include <iostream>
-using namespace std ; 
-#include <stdio.h>
-#include <string.h>
+#include <bits/stdc++.h>
 #define MAX 500
-int t[MAX] ; 
-void shifttable(char p[]) {
-       int i , j , m ;
-       m = strlen(p) ; 
-       for( i = 0 ; i < MAX ; i++ ) t[i] = m ; 
-       for( j = 0 ; j < m - 1 ; j++ ) t[p[j]] = m - 1 - j ; 
+using namespace std ;
+int TABLE[SIZE] ; 
+
+void ShiftTable( char p[] ) {
+        int m = strlen(p) ; 
+        for( int i = 0 ; i < m ; i++ ) TABLE[i] = m ; 
+        for( int j = 0 ; j < m ; j++ ) TABLE[p[j]] = m - 1 - j ; 
 }
 
-int horspool( char src[] , char p[] ) {
-       int i , j , k , m , n ; 
-       n = strlen(src) ; 
-       m = strlen(p) ; 
-       cout << "THE LENGTH OF TEXT : " << n << endl ;
-       cout << "THE LENGTH OF THE PATTERN IS : " << m << endl ; 
-       i = m - 1 ;
-       while( i < n ) {
-              k = 0 ; 
-              while((k<m)&&(p[m-1-k] == src[i-k] ) ) k++ ; 
-              if( k == m ) return i - m + 1 ; 
-              else i += t[src[i]] ; 
-       }
-       return -1 ; 
+int horspool( char TEXT[] , char PATTERN[] ) {
+        int m = strlen(PATTERN) ; 
+        int n = strlen(TEXT) ; 
+        cout << "LENGTH OF PATTERN : " << m << endl ; 
+        cout << "LENGTH OF TEXT : " << n << endl ; 
+        i = m - 1 ; 
+        while( i < n ) {
+                int k = 0 ; 
+                while( (k<n) && (PATTERN[m-1-k] == TEXT[i-k] ) ) k++ ;
+                if( k == m ) return i - m + 1 ;
+                else i += TABLE[TEXT[i]] ; 
+        }
+        return -1 ; 
 }
 
 int main() {
-       char src[100] , p[100] ; 
-       int pos ; 
-       cout << "ENTER THE PATTERN : " << endl ; 
-       cin >> src ;
-       cout << "ENTER THE TEXT : " << endl ; 
-       cin >> p ; 
-       shifttable(p) ; 
-       pos = horspool(src,p) ; 
-       if(pos>=0) cout << "PATTERN FOUND AT : " << pos << endl ; 
-       else cout << "PATTERN NOT FOUND ! " << endl ; 
+        char TEXT[SIZE] , PATTERN[SIZE] ; 
+        cout << "Enter the Text : " << endl ;
+        cin >> TEXT ;
+        cout << "Enter the Pattern : " << endl ; 
+        cin >> PATTERN ; 
+        ShiftTable(PATTERN) ; 
+        int pos = horspool(TEXT,PATTERN) ; 
+        if(pos==-1) cout << "Pattern Not Found ! " << endl ; 
+        else cout << "Pattern foudn at : " << pos + 1 << endl ;
 }

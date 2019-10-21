@@ -1,26 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std ;
-using ll = long long ;
+using ll = long long ; 
 
-int rod_cut( int price[] , int n ) {
-       int dp[n+1] ; 
-
-       dp[0] = 0 ; 
-
-       for( int i = 1 ; i <= n ; i++ ) {
-              int Q = INT_MIN ; 
-              for( int j = 0 ; j < i ; j++ ) {
-                     Q = max( Q , price[j] + dp[i-j-1] ) ;
-              }
-              dp[i] = Q ; 
-       }
-       return dp[n] ;
+ll findLCM ( ll arr[] , int n ) {
+       ll ans = arr[0] ; 
+       for ( int i = 1 ; i < n ; i++ ) 
+              ans = ( arr[i]*ans )/(__gcd( arr[i] , ans ) ) ; 
+       return ans ; 
 }
 
-int main()
-{
-    int arr[] = {1, 5, 8, 9, 10, 17, 17, 20};
-    int size = sizeof(arr)/sizeof(arr[0]);
-    printf("Maximum Obtainable Value is %d", rod_cut(arr, size));
-    return 0;
+ll findGCD ( ll arr[] , int n ) {
+       ll ans = arr[0] ; 
+       for ( int i = 0 ; i < n ; i++ ) ans = __gcd ( ans , arr[i] ) ; 
+       return ans ; 
+}
+
+int main() {
+       ios :: sync_with_stdio(false) ;
+       cin.tie( nullptr ) ;
+       cout.tie( nullptr ) ;
+
+       int a , b ; cin >> a >> b ; 
+       ll first[a] ; ll second[b] ; 
+       for ( int i = 0 ; i < a ; i++ ) cin >> first[i] ; 
+       for ( int i = 0 ; i < b ; i++ ) cin >> second[i] ; 
+
+       ll one = findLCM( first , a ) ; 
+       ll two = findGCD( second , b ) ; 
+       cout << two/one << endl ;
 }

@@ -1,60 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std ;
-using ll = long long ;
-constexpr ll INF = 1e9 + 7 ;
 
-bool isPrime( ll number ) {
-      if( number == 2 ) return false ;
-      for( int i = 2 ; i*i <= number ; i++ ) {
-            if( number % i == 0 ) return false ;
-      } return true ;
+int GCD( int a , int b ) {
+      if( a == 0 || b == 0 ) return a+b ; 
+      return GCD( b%a , a ) ;
 }
 
-int main() {
-      ios :: sync_with_stdio(false) ;
-      cin.tie( nullptr ) ;
-      cout.tie( nullptr ) ;
-      
-      int t ;
-      cin >> t ;
-      
-      while( t-- ) {
-            int n ; 
-            cin >> n ; 
-            
-            bool prime = false; 
-            vector<ll> arr(n) ; 
-            for( int i = 0 ; i < n ; i++ ) {
-                  cin >> arr[i] ;
-                  if(isPrime(arr[i])) {
-                        prime = true ;
-                  }
+int main() {      
+      int T ; cin >> T ; 
+      while( T-- ) {
+            int N ; cin >> N ; 
+            int c = 0 ; 
+            bool show0 = false ;
+            int num1 ; cin >> num1 ; 
+            for( int i = 1 ; i < N ; i++ ) {
+                  int ele ; cin >> ele ; 
+                  if( GCD(num1,ele) == 1 ) {
+                        show0 = true ; continue ;
+                  } else {
+                        c++ ; num1 = GCD(num1,ele) ; 
+                  } 
             }
-            if(prime) {
-                  cout << 0 << endl ; 
-                  continue ;
-            }       
-            sort( arr.begin() , arr.end() ) ;
-            if( arr[0] == 1 ) {
-                  cout << 0 << endl ;
-                  continue ; 
+            if(show0) {
+                  printf("0\n") ; continue ; 
             }
-
-            for( int i = 0 ; i < n - 1 ; i++ ) {
-                  for( int j = i + 1 ; j < n ; j++ ) 
-                        if( arr[j] % arr[i] == 0 && arr[i] != INF ) {
-                              arr[j] = INF ;
-                  }
-            }
-            
-            int count = 0 ;
-            for( int i = 0 ; i < n ; i++ ) {
-                  if ( arr[i] == INF ) count++ ; 
-            }
-            if( count == n - 1 ) {
-                  cout << -1 << endl ;
-                  continue ;
-            }
-            cout << count << endl ;
+            if( c == N - 1 ) printf("-1\n") ;
+            else printf("%d\n", c );
       }
 }
