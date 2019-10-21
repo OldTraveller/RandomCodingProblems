@@ -2,24 +2,22 @@
 using namespace std ;
 using ll = long long ;
 
-ll GCD( ll x , ll y ) {
-      if( x == 0 || y == 0 ) {
-            return y+x ;
-      }
-      return GCD( y , x%y ) ;
-}
-
 int main() {
       ios :: sync_with_stdio(false) ;
       cin.tie( nullptr ) ;
       cout.tie( nullptr ) ;
 
-      ll t ; 
-      cin >> t ; 
+      int n , m ;
+      cin >> n >> m ;
+      int arr[n+1] ; 
+      memset( arr , 0 , sizeof( arr ) ) ;
 
-      while( t-- ) {
-            ll x , y ;
-            cin >> x >> y ;
-            cout << 2*GCD( x , y ) << endl ; 
+      for( int i = 1 ; i <= m ;  i++ ) {
+            int pos ; 
+            cin >> pos ; 
+            arr[pos]++ ; 
       }
+
+      cout << *min_element( arr + 1 , arr + n + 1 ) << endl ;
+      
 }
